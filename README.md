@@ -71,4 +71,4 @@ If the issue persists, contact support.
 5. Contact Support
 For any additional help or technical support, please contact our support team:
 
-Email: support@tippingapp.com
+Email: gurudilp456@gmail.com
