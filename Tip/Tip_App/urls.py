@@ -11,5 +11,8 @@ urlpatterns = [
     path('admin/', views.index, name='admin'),
     path('login/', views.CustomLoginView.as_view(), name='login'),
     path('waiters/<int:waiter_id>/', views.waiter_detail, name='waiter_detail'),
-    
+    path('waiter/<int:waiter_id>/', views.waiter_detail, name='waiter_detail'),
+    path('create_order/<int:waiter_id>/', views.create_order, name='create_order'),
 ]
+
+

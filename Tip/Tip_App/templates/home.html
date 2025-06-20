@@ -17,7 +17,8 @@
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="waiter-card">
                     <a href="{% url 'waiter_detail' waiter.id %}">
-                        <div class="waiter-avatar" style="background-image: url('{{ waiter.photo.url }}');"></div>
+                        <div class="waiter-avatar"
+                            style="background-image: url('{{ waiter.photo.url }}'); height: 200px; width: 200px;"></div>
                     </a>
                     <p class="text-muted">{{ waiter.name }}</p>
 

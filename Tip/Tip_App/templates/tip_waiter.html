@@ -6,45 +6,79 @@
     <div class="text-center">
         <h2>Tip {{ waiter.name }}</h2>
 
-        <div class="waiter-avatar" style="background-image: url('{{ waiter.photo.url }}');"></div>
+        <div class="waiter-avatar"
+            style="background-image: url('{{ waiter.photo.url }}');  height: 200px; width: 200px;"></div>
 
-        <input type="number" id="amount" class="form-control mb-3" placeholder="Enter amount (in ₹)" min="10" required>
-
-        <p class="lead">You're tipping ₹{{ amount }}</p>
-
-
+        <div class="d-flex justify-content-center">
+            <div class="w-100" style="max-width: 400px;">
+                <label for="amount" class="form-label fs-5 fw-semibold text-center d-block">Enter Tip Amount (in
+                    ₹)</label>
+                <input type="number" id="amount"
+                    class="form-control form-control-lg shadow-sm rounded-3 border-primary text-center"
+                    placeholder="Minimum ₹10" min="10" required>
+            </div>
+        </div>
 
         <button id="rzp-button" class="btn btn-success btn-lg mt-3">
             <i class="fas fa-hand-holding-usd me-2"></i>Pay Now
         </button>
+
     </div>
 </div>
-
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-    const options = {
-        "key": "{{ razorpay_key }}",
-        "amount": "{{ amount }}",
-        "currency": "INR",
-        "name": "TipEase",
-        "description": "Tip for {{ waiter.name }}",
-        "order_id": "{{ order_id }}",
-        "handler": function (response) {
-            alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
-            // You can POST this to the server to update tip count (optional)
-        },
-        "prefill": {
-            "name": "{{ waiter.name }}",
-        },
-        "theme": {
-            "color": "#3399cc"
-        }
-    };
-
-    const rzp = new Razorpay(options);
     document.getElementById('rzp-button').onclick = function (e) {
-        rzp.open();
         e.preventDefault();
+
+        const amountInput = document.getElementById("amount").value;
+
+        if (!amountInput || parseInt(amountInput) < 10) {
+            alert("Please enter a valid amount (minimum ₹10).");
+            return;
+        }
+
+        const amountInPaise = parseInt(amountInput) * 100;
+
+        fetch("{% url 'create_order' waiter.id %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({ amount: amountInPaise })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                const options = {
+                    "key": "{{ razorpay_key }}",
+                    "amount": data.amount,
+                    "currency": "INR",
+                    "name": "TipEase",
+                    "description": "Tip for {{ waiter.name }}",
+                    "order_id": data.order_id,
+                    "handler": function (response) {
+                        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                    },
+                    "prefill": {
+                        "name": "{{ waiter.name }}"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Failed to initiate payment.");
+            });
     };
 </script>
 {% endblock %}
