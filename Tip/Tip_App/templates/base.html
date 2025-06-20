@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}TipEase - Digital Tipping Made Simple{% endblock %}</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <style>
         :root {
@@ -42,7 +44,7 @@
 
         .navbar {
             background: var(--gradient-primary) !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-nav .nav-link {
@@ -67,7 +69,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn-success {
@@ -87,14 +89,14 @@
         .card {
             border: none;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             background: white;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .card-header {
@@ -123,7 +125,7 @@
         }
 
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -174,7 +176,7 @@
 
         .waiter-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .waiter-avatar {
@@ -228,14 +230,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 768px) {
             .hero-section h1 {
                 font-size: 2.5rem;
             }
-            
+
             .hero-section p {
                 font-size: 1rem;
             }
@@ -246,13 +248,21 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
-    
+
     {% block extra_css %}{% endblock %}
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -271,45 +281,51 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tip">
+                        <a href="{% url 'tip' %}" class="nav-link">
                             <i class="fas fa-credit-card me-1"></i>Tip Now
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#waiters">
-                            <i class="fas fa-users me-1"></i>Our Staff
+                        <a class="nav-link" href="{% url 'services' %}">
+                            <i class="fas fa-users me-1"></i>Our Services
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">
+                        <a class="nav-link" href="{% url 'about' %}">
                             <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}"">
+                            <i class=" fas fa-phone me-1"></i>Contact
                         </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-user-circle me-1"></i>{{ user.username }}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#profile"><i class="fas fa-user me-2"></i>Profile</a></li>
-                                <li><a class="dropdown-item" href="#history"><i class="fas fa-history me-2"></i>Tip History</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                            </ul>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>{{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#profile"><i class="fas fa-user me-2"></i>Profile</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#history"><i class="fas fa-history me-2"></i>Tip
+                                    History</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                        </ul>
+                    </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">
-                                <i class="fas fa-sign-in-alt me-1"></i>Login
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}">
-                                <i class="fas fa-user-plus me-1"></i>Register
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin' %}">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login
+                        </a>
+                    </li>
+
                     {% endif %}
                 </ul>
             </div>
@@ -326,177 +342,27 @@
     <!-- Toast Container -->
     <div class="toast-container">
         {% if messages %}
-            {% for message in messages %}
-                <div class="toast show" role="alert" data-bs-delay="5000">
-                    <div class="toast-header">
-                        <i class="fas fa-{% if message.tags == 'success' %}check-circle text-success{% elif message.tags == 'error' %}exclamation-triangle text-danger{% else %}info-circle text-info{% endif %} me-2"></i>
-                        <strong class="me-auto">{{ message.tags|title }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-                    </div>
-                    <div class="toast-body">
-                        {{ message }}
-                    </div>
-                </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class="toast show" role="alert" data-bs-delay="5000">
+            <div class="toast-header">
+                <i
+                    class="fas fa-{% if message.tags == 'success' %}check-circle text-success{% elif message.tags == 'error' %}exclamation-triangle text-danger{% else %}info-circle text-info{% endif %} me-2"></i>
+                <strong class="me-auto">{{ message.tags|title }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
         {% endif %}
     </div>
 
     <!-- Main Content -->
     <main>
         {% block content %}
-        <!-- Default Hero Section -->
-        <section class="hero-section">
-            <div class="container">
-                <h1 class="animate-fade-in">Digital Tipping Made Simple</h1>
-                <p class="animate-fade-in">Show appreciation to your service staff with secure, instant digital tips</p>
-                <div class="animate-fade-in">
-                    <a href="#tip" class="btn btn-light btn-lg me-3">
-                        <i class="fas fa-credit-card me-2"></i>Tip Now
-                    </a>
-                    <a href="#about" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-info-circle me-2"></i>Learn More
-                    </a>
-                </div>
-                
-                <!-- Payment Methods -->
-                <div class="payment-icons animate-fade-in">
-                    <div class="payment-icon">
-                        <i class="fab fa-cc-visa text-primary"></i>
-                    </div>
-                    <div class="payment-icon">
-                        <i class="fab fa-cc-mastercard text-warning"></i>
-                    </div>
-                    <div class="payment-icon">
-                        <i class="fab fa-cc-amex text-info"></i>
-                    </div>
-                    <div class="payment-icon">
-                        <i class="fab fa-paypal text-primary"></i>
-                    </div>
-                    <div class="payment-icon">
-                        <i class="fab fa-apple-pay text-dark"></i>
-                    </div>
-                    <div class="payment-icon">
-                        <i class="fab fa-google-pay text-success"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-4 mb-4">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h4>Secure Payments</h4>
-                        <p class="text-muted">Bank-level encryption ensures your payment information is always protected and secure.</p>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h4>Instant Transfer</h4>
-                        <p class="text-muted">Tips are transferred instantly to service staff, ensuring they receive appreciation immediately.</p>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="feature-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h4>Mobile Friendly</h4>
-                        <p class="text-muted">Optimized for mobile devices, making it easy to tip on-the-go from any smartphone.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sample Waiters Section -->
-        <section class="py-5 restaurant-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center mb-5">
-                        <h2 class="text-white">Meet Our Amazing Staff</h2>
-                        <p class="text-white">Show your appreciation to our dedicated service team</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="waiter-card">
-                            <div class="waiter-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=387&q=80');"></div>
-                            <h5>Alex Johnson</h5>
-                            <p class="text-muted">Server</p>
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$5
-                                </button>
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$10
-                                </button>
-                                <button class="btn btn-success btn-sm">
-                                    <i class="fas fa-hand-holding-usd me-1"></i>Custom
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="waiter-card">
-                            <div class="waiter-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=387&q=80');"></div>
-                            <h5>Sarah Williams</h5>
-                            <p class="text-muted">Bartender</p>
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$5
-                                </button>
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$10
-                                </button>
-                                <button class="btn btn-success btn-sm">
-                                    <i class="fas fa-hand-holding-usd me-1"></i>Custom
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="waiter-card">
-                            <div class="waiter-avatar" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=387&q=80');"></div>
-                            <h5>Mike Chen</h5>
-                            <p class="text-muted">Host</p>
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$5
-                                </button>
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$10
-                                </button>
-                                <button class="btn btn-success btn-sm">
-                                    <i class="fas fa-hand-holding-usd me-1"></i>Custom
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="waiter-card">
-                            <div class="waiter-avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=387&q=80');"></div>
-                            <h5>Emma Davis</h5>
-                            <p class="text-muted">Manager</p>
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$5
-                                </button>
-                                <button class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-dollar-sign me-1"></i>$10
-                                </button>
-                                <button class="btn btn-success btn-sm">
-                                    <i class="fas fa-hand-holding-usd me-1"></i>Custom
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         {% endblock %}
+
     </main>
 
     <!-- Footer -->
@@ -544,11 +410,11 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script>
         // Initialize tooltips
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
@@ -586,11 +452,11 @@
             toast.className = 'toast show';
             toast.setAttribute('role', 'alert');
             toast.setAttribute('data-bs-delay', '5000');
-            
-            const iconClass = type === 'success' ? 'check-circle text-success' : 
-                            type === 'error' ? 'exclamation-triangle text-danger' : 
-                            'info-circle text-info';
-            
+
+            const iconClass = type === 'success' ? 'check-circle text-success' :
+                type === 'error' ? 'exclamation-triangle text-danger' :
+                    'info-circle text-info';
+
             toast.innerHTML = `
                 <div class="toast-header">
                     <i class="fas fa-${iconClass} me-2"></i>
@@ -601,9 +467,9 @@
                     ${message}
                 </div>
             `;
-            
+
             toastContainer.appendChild(toast);
-            
+
             // Auto-remove toast after delay
             setTimeout(() => {
                 if (toast.parentNode) {
@@ -616,7 +482,7 @@
         function validateForm(formElement) {
             let isValid = true;
             const requiredFields = formElement.querySelectorAll('[required]');
-            
+
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
                     field.classList.add('is-invalid');
@@ -626,12 +492,12 @@
                     field.classList.add('is-valid');
                 }
             });
-            
+
             return isValid;
         }
 
         // Auto-hide alerts after 5 seconds
-        setTimeout(function() {
+        setTimeout(function () {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {
                 if (alert.classList.contains('alert-dismissible')) {
@@ -643,7 +509,8 @@
             });
         }, 5000);
     </script>
-    
+
     {% block extra_js %}{% endblock %}
 </body>
+
 </html>
