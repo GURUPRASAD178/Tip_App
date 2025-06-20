@@ -1,48 +1,69 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}CONTACT US - TipEase{% endblock %}
 
 {% block content %}
-
-<section class="py-5" id="contact">
+<section class="py-5 bg-light" id="contact">
     <div class="container">
-        <div class="row text-center mb-4">
+        <!-- Section Heading -->
+        <div class="row text-center mb-5">
             <div class="col">
-                <h2>Contact Us</h2>
-                <p class="text-muted">We’d love to hear from you!</p>
+                <h2 class="fw-bold">Get in Touch</h2>
+                <p class="text-muted fs-5">We’re here to help with any questions, feedback, or partnership
+                    opportunities.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <form>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Your Message</label>
-                        <textarea class="form-control" id="message" rows="5" placeholder="How can we help?"
-                            required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane me-1"></i>Send Message
-                    </button>
-                </form>
+
+        <!-- Contact Form & Info -->
+        <div class="row g-4">
+            <!-- Contact Form -->
+            <div class="col-md-6">
+                <div class="p-4 bg-white shadow rounded-4">
+                    <h5 class="fw-semibold mb-4">Send Us a Message</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="How can we help?"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane me-1"></i> Send Message
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-6 text-center">
-                <h5 class="mb-3">Reach Us</h5>
-                <p><i class="fas fa-envelope me-2"></i>support@tipease.com</p>
-                <p><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
-                <p><i class="fas fa-map-marker-alt me-2"></i>123 Restaurant St, Food City, FC 12345</p>
-                <div class="mt-3">
-                    <a href="#" class="me-3"><i class="fab fa-facebook fs-5"></i></a>
-                    <a href="#" class="me-3"><i class="fab fa-twitter fs-5"></i></a>
-                    <a href="#" class="me-3"><i class="fab fa-instagram fs-5"></i></a>
-                    <a href="#" class="me-3"><i class="fab fa-linkedin fs-5"></i></a>
+
+            <!-- Contact Details & Map -->
+            <div class="col-md-6">
+                <div class="p-4 bg-white shadow rounded-4 mb-4">
+                    <h5 class="fw-semibold mb-3">Our Contact Info</h5>
+                    <p><i class="fas fa-envelope me-2 text-primary"></i><strong>Email:</strong> support@tipease.com</p>
+                    <p><i class="fas fa-phone me-2 text-success"></i><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt me-2 text-danger"></i><strong>Address:</strong> 123 Restaurant
+                        St, Food City, FC 12345</p>
+                    <div class="mt-3">
+                        <a href="#" class="me-3 text-dark"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3 text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="me-3 text-dark"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3 text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Google Map -->
+                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.654261282883!2d-122.40136958468186!3d37.79350297975644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808b8bbf848f%3A0x7285f39187aa536d!2s123%20Restaurant%20St%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1679539947059!5m2!1sen!2sus"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

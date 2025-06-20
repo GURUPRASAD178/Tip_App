@@ -1,40 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}OUR SERVICES - TipEase{% endblock %}
 
 {% block content %}
 <section class="py-5 bg-light" id="services">
     <div class="container">
-        <div class="row text-center mb-4">
+        <!-- Section Header -->
+        <div class="row text-center mb-5">
             <div class="col">
-                <h2>Our Services</h2>
-                <p class="text-muted">What we offer to customers and restaurant staff</p>
+                <h2 class="fw-bold">Our Services</h2>
+                <p class="text-muted fs-5">Innovative features designed for customers and service staff alike.</p>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-md-4 mb-4">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
+
+        <!-- Services Grid -->
+        <div class="row g-4 text-center">
+            <!-- Mobile Tipping -->
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 shadow-sm h-100 bg-white">
+                    <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="fw-semibold">Mobile Tipping</h5>
+                    <p class="text-muted">Effortlessly tip staff using your phone. Scan, select, and send — it’s that
+                        easy.</p>
                 </div>
-                <h5>Mobile Tipping</h5>
-                <p class="text-muted">Tip your waiter, bartender, or chef easily through your smartphone.</p>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-icon">
-                    <i class="fas fa-wallet"></i>
+
+            <!-- Instant Payouts -->
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 shadow-sm h-100 bg-white">
+                    <i class="fas fa-wallet fa-3x text-success mb-3"></i>
+                    <h5 class="fw-semibold">Instant Payouts</h5>
+                    <p class="text-muted">Tips are instantly deposited into verified digital wallets, ensuring quick
+                        access for staff.</p>
                 </div>
-                <h5>Instant Payouts</h5>
-                <p class="text-muted">Tips are credited to staff wallets instantly via secure integrations.</p>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
+
+            <!-- Dashboard & Analytics -->
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 shadow-sm h-100 bg-white">
+                    <i class="fas fa-chart-line fa-3x text-danger mb-3"></i>
+                    <h5 class="fw-semibold">Dashboard & Analytics</h5>
+                    <p class="text-muted">Staff get real-time access to their tip history, feedback, and performance
+                        trends via personalized dashboards.</p>
                 </div>
-                <h5>Dashboard & Analytics</h5>
-                <p class="text-muted">Staff can track their tip history, earnings, and feedback in real time.</p>
+            </div>
+        </div>
+
+        <!-- Optional Call to Action -->
+        <div class="row mt-5 text-center">
+            <div class="col">
+                <h4 class="fw-bold mb-3">Transform Your Tipping Experience</h4>
+                <p class="text-muted">Whether you're managing a restaurant or tipping your favorite server, TipEase
+                    makes it simple, secure, and rewarding.</p>
+                <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg mt-2">Get in Touch</a>
             </div>
         </div>
     </div>
 </section>
-
 {% endblock %}

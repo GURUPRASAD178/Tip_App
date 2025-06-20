@@ -33,12 +33,54 @@ def waiter_detail(request, waiter_id):
     waiter = get_object_or_404(Waiter, id=waiter_id)
     return render(request, 'admin.html', {'waiter': waiter})
 
+
 ##############################################################################
 # views.py
 from django.conf import settings
 import razorpay
 from django.shortcuts import render, get_object_or_404
 from .models import Waiter
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+
+
+def waiter_detail(request, waiter_id):
+    waiter = get_object_or_404(Waiter, id=waiter_id)
+    return render(request, 'tip_waiter.html', {
+        'waiter': waiter,
+        'razorpay_key': settings.RAZORPAY_KEY_ID
+    })
+
+@csrf_exempt
+def create_order(request, waiter_id):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        amount = data.get("amount")
+
+        if not amount or int(amount) < 1000:
+            return JsonResponse({"error": "Minimum tip is ₹10"}, status=400)
+
+        # Create Razorpay order
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+        order_data = {
+            'amount': int(amount),
+            'currency': 'INR',
+            'payment_capture': 1
+        }
+        order = client.order.create(order_data)
+
+        return JsonResponse({
+            'order_id': order['id'],
+            'amount': order['amount']
+        })
+
+
+
+
+
+
 
 # def waiter_detail(request, waiter_id):
 #     waiter = get_object_or_404(Waiter, id=waiter_id)
@@ -73,45 +115,3 @@ from .models import Waiter
 #         'amount': amount,
 #         'amount_display': amount_param
 #     })
-
-
-
-
-def waiter_detail(request, waiter_id):
-    waiter = get_object_or_404(Waiter, id=waiter_id)
-    return render(request, 'tip_waiter.html', {
-        'waiter': waiter,
-        'razorpay_key': settings.RAZORPAY_KEY_ID
-    })
-
-
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import json
-
-@csrf_exempt
-def create_order(request, waiter_id):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        amount = data.get("amount")
-
-        if not amount or int(amount) < 1000:
-            return JsonResponse({"error": "Minimum tip is ₹10"}, status=400)
-
-        # Create Razorpay order
-        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
-        order_data = {
-            'amount': int(amount),
-            'currency': 'INR',
-            'payment_capture': 1
-        }
-        order = client.order.create(order_data)
-
-        return JsonResponse({
-            'order_id': order['id'],
-            'amount': order['amount']
-        })
-
-
-
-

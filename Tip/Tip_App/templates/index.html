@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Meet Our Staff - TipEase{% endblock %}
-
 {% block content %}
 <section class="hero-section">
     <div class="container">
         <h1 class="animate-fade-in">Digital Tipping Made Simple</h1>
-        <p class="animate-fade-in">Show appreciation to your service staff with secure, instant digital tips</p>
+        <p class="animate-fade-in">Show appreciation to our service staff with secure, instant digital tips</p>
         <div class="animate-fade-in">
-            <a href="{% url 'home' %}" class="btn btn-light btn-lg me-3">
+            <a href="{% url 'tip' %}" class="btn btn-light btn-lg me-3">
                 <i class="fas fa-credit-card me-2"></i>Tip Now
             </a>
-            <a href="#about" class="btn btn-outline-light btn-lg">
+            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
                 <i class="fas fa-info-circle me-2"></i>Learn More
             </a>
         </div>

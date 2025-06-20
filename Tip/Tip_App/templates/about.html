@@ -1,43 +1,76 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}ABOUT US - TipEase{% endblock %}
 
 {% block content %}
 
-<section class="py-5" id="about">
+
+
+<section class="py-5 bg-light" id="about">
     <div class="container">
-        <div class="row text-center mb-4">
+        <!-- Heading -->
+        <div class="row mb-5 text-center">
             <div class="col">
-                <h2>About TipEase</h2>
-                <p class="text-muted">Empowering service staff with instant, secure digital tips.</p>
+                <h2 class="fw-bold">Who We Are</h2>
+                <p class="text-muted fs-5">Bringing digital gratitude to life – one tip at a time.</p>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-md-4 mb-4">
-                <div class="feature-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <h5>Our Mission</h5>
-                <p class="text-muted">To simplify the process of tipping and ensure timely appreciation reaches the
-                    hardworking service staff.</p>
+
+        <!-- About Details -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6">
+                <img src="{% static 'images/about_us_team.jpg' %}" alt="TipEase team working together"
+                    class="img-fluid rounded-4 shadow-sm">
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h5>Our Team</h5>
-                <p class="text-muted">We're a passionate team of developers, designers, and restaurant enthusiasts
-                    creating digital experiences for real-world gratitude.</p>
+            <div class="col-md-6 mt-4 mt-md-0">
+                <h4 class="fw-semibold mb-3">Our Vision</h4>
+                <p class="text-muted fs-6">TipEase was born from a simple idea — showing appreciation shouldn't be hard.
+                    In a world going digital, our mission is to make tipping effortless, transparent, and meaningful.
+                </p>
+                <p class="text-muted fs-6">From small cafes to luxury hotels, we empower guests to tip their favorite
+                    staff directly and securely — all at the tap of a button.</p>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
+        </div>
+
+        <!-- Feature Icons -->
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 shadow-sm h-100">
+                    <i class="fas fa-bullseye fa-2x text-primary mb-3"></i>
+                    <h5 class="fw-semibold">Our Mission</h5>
+                    <p class="text-muted">To simplify tipping and ensure appreciation reaches the hands that serve us
+                        with dedication every day.</p>
                 </div>
-                <h5>Security Focused</h5>
-                <p class="text-muted">We use bank-level encryption and verified gateways to make sure your transactions
-                    are safe and transparent.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 shadow-sm h-100">
+                    <i class="fas fa-users fa-2x text-success mb-3"></i>
+                    <h5 class="fw-semibold">Our Team</h5>
+                    <p class="text-muted">We're technologists, hospitality lovers, and designers dedicated to bridging
+                        tech and human kindness.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 shadow-sm h-100">
+                    <i class="fas fa-shield-alt fa-2x text-danger mb-3"></i>
+                    <h5 class="fw-semibold">Security First</h5>
+                    <p class="text-muted">Every tip is processed with bank-grade encryption and industry-compliant
+                        payment gateways to keep your contributions safe.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row mt-5 text-center">
+            <div class="col">
+                <h4 class="fw-bold mb-3">Join the Movement</h4>
+                <p class="text-muted">Whether you're a customer or a business, TipEase invites you to be part of a
+                    digital tipping revolution that celebrates service.</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg mt-2">Partner with Us</a>
             </div>
         </div>
     </div>
 </section>
+
 {% endblock %}
