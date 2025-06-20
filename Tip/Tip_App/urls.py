@@ -11,4 +11,5 @@ urlpatterns = [
     path('admin/', views.index, name='admin'),
     path('login/', views.CustomLoginView.as_view(), name='login'),
     path('waiters/<int:waiter_id>/', views.waiter_detail, name='waiter_detail'),
+    
 ]

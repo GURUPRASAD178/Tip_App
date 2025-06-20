@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Tip {{ waiter.name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center">
+        <h2>Tip {{ waiter.name }}</h2>
+
+        <div class="waiter-avatar" style="background-image: url('{{ waiter.photo.url }}');"></div>
+
+        <input type="number" id="amount" class="form-control mb-3" placeholder="Enter amount (in ₹)" min="10" required>
+
+        <p class="lead">You're tipping ₹{{ amount }}</p>
+
+
+
+        <button id="rzp-button" class="btn btn-success btn-lg mt-3">
+            <i class="fas fa-hand-holding-usd me-2"></i>Pay Now
+        </button>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    const options = {
+        "key": "{{ razorpay_key }}",
+        "amount": "{{ amount }}",
+        "currency": "INR",
+        "name": "TipEase",
+        "description": "Tip for {{ waiter.name }}",
+        "order_id": "{{ order_id }}",
+        "handler": function (response) {
+            alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+            // You can POST this to the server to update tip count (optional)
+        },
+        "prefill": {
+            "name": "{{ waiter.name }}",
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+
+    const rzp = new Razorpay(options);
+    document.getElementById('rzp-button').onclick = function (e) {
+        rzp.open();
+        e.preventDefault();
+    };
+</script>
+{% endblock %}
