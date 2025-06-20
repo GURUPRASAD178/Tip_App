@@ -20,9 +20,9 @@ def about(request):
     waiters = Waiter.objects.all()
     return render(request, 'about.html')
 
-def contact(request):
-    waiters = Waiter.objects.all()
-    return render(request, 'contact.html')
+# def contact(request):
+#     waiters = Waiter.objects.all()
+#     return render(request, 'contact.html')
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'
@@ -80,6 +80,31 @@ def create_order(request, waiter_id):
 
 
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import ContactForm
+from django.conf import settings
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            subject = f'New Contact Message from {name}'
+            body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+            send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, ['gurudilp456@gmail.com'])
+
+            messages.success(request, "Your message has been sent successfully!")
+            return redirect('contact')
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
 
 
 # def waiter_detail(request, waiter_id):

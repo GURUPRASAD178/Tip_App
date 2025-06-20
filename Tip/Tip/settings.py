@@ -30,6 +30,15 @@ ALLOWED_HOSTS = []
 RAZORPAY_KEY_ID = 'rzp_test_s1IyelnDkMORc6'
 RAZORPAY_KEY_SECRET = 'g0TmjUagYWJqLz9Z3bLvbFVX'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # or your SMTP provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'gurudilp456@gmail.com'
+EMAIL_HOST_PASSWORD = 'ixtckpvyvvhfzcsw'  # use App Password if Gmail
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
 # Application definition
 
 INSTALLED_APPS = [
