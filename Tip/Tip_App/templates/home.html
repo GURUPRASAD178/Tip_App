@@ -3,7 +3,7 @@
 {% block title %}Meet Our Staff - TipEase{% endblock %}
 
 {% block content %}
-<section class="hero-section restaurant-bg " id="waiters">
+<section class="hero-section restaurant-bg" id="waiters">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5 h-100 animate-fade-in">
@@ -11,28 +11,23 @@
                 <p class="text-white">Show your appreciation to our dedicated service team</p>
             </div>
         </div>
+
         <div class="row">
             {% for waiter in waiters %}
-            <div class="col-lg-3 col-md-6 mb-4 animate-fade-in">
+            <div class="col-lg-3 col-md-6 mb-4">
                 <div class="waiter-card">
-                    <div class="waiter-avatar" style="background-image: url('{{ waiter.photo.url }}');"></div>
-                    <h5>{{ waiter.name }}</h5>
-                    <p class="text-muted">{{ waiter.get_gender_display }}</p>
-                    <div class="d-flex justify-content-center gap-2">
-                        <a href="{% url 'tip_waiter' waiter.id 5 %}" class="btn btn-outline-success btn-sm">
-                            <i class="fas fa-dollar-sign me-1"></i>$5
-                        </a>
-                        <a href="{% url 'tip_waiter' waiter.id 10 %}" class="btn btn-outline-success btn-sm">
-                            <i class="fas fa-dollar-sign me-1"></i>$10
-                        </a>
-                        <a href="{% url 'waiter_detail' waiter.id %}" class="btn btn-success btn-sm">
-                            <i class="fas fa-hand-holding-usd me-1"></i>Custom
-                        </a>
-                    </div>
+                    <a href="{% url 'waiter_detail' waiter.id %}">
+                        <div class="waiter-avatar" style="background-image: url('{{ waiter.photo.url }}');"></div>
+                    </a>
+                    <p class="text-muted">{{ waiter.name }}</p>
+
                 </div>
             </div>
+            {% empty %}
+            <div class="col-12 text-center text-light">
+                <p>No waiters available at the moment.</p>
+            </div>
             {% endfor %}
-
         </div>
     </div>
 </section>
