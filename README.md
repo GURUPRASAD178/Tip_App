@@ -26,8 +26,9 @@ TipEase is a modern and user-friendly tipping platform that enables customers to
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/GURUPRASAD178/tipease.git
-cd tipease
+git clone https://github.com/GURUPRASAD178/Tip_App.git
+cd Tip
+pip install requirements.txt
+python manage.py runserver
