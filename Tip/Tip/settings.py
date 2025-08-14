@@ -38,10 +38,18 @@ EMAIL_HOST_USER = 'gurudilp456@gmail.com'
 EMAIL_HOST_PASSWORD = 'ixtckpvyvvhfzcsw'  # use App Password if Gmail
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+JAZZMIN_SETTINGS = {
+    "site_title": "My Admin",
+    "site_header": "My Custom Admin",
+    "welcome_sign": "Welcome to the dashboard",
+    "theme": "cosmo",  # Choose from Bootswatch themes
+    "dark_mode_theme": "darkly",
+}
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
