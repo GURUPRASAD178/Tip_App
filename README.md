@@ -2,6 +2,10 @@
 
 TipEase is a Django web application for browsing waiter profiles and sending digital tips through Razorpay. It also includes a contact form and Django’s admin interface for managing application data.
 
+## Demo
+
+[Try TipEase live](https://guruprasad178.pythonanywhere.com/home)
+
 ## Features
 
 - Browse waiter profiles and profile details
@@ -68,11 +72,11 @@ Start the development server:
 python manage.py runserver
 ```
 
-Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser. The Django admin is available at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/). To create an admin login, run `python manage.py createsuperuser` and follow the prompts.
+Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser. The Django admin is available at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/). To create an admin login, run `python manage.py createsuperuser`.
 
 ## Payment configuration
 
-The Razorpay key ID and secret are read from `Tip/Tip/settings.py`. Configure your own **test-mode** credentials there before trying payments. Never commit live payment credentials or other secrets to source control; use environment variables and secure deployment settings for any real deployment. Email settings in the same file should also be configured before using the contact form.
+The Razorpay key ID and secret are read from `Tip/Tip/settings.py`. Configure your own **test-mode** credentials there before trying payments. Never commit live payment credentials or other secrets.
 
 ## Project layout
 
@@ -89,4 +93,4 @@ Tip_App/
 
 ## Security note
 
-The checked-in Django settings currently contain secret values and have `DEBUG` enabled. Treat any committed credentials as exposed: rotate them, move secrets out of the repository, and set `DEBUG = False` with an appropriate `ALLOWED_HOSTS` before deployment. This repository is currently configured for local development, not production.
+The checked-in Django settings currently contain secret values and have `DEBUG` enabled. Treat any committed credentials as exposed: rotate them, move secrets out of the repository, and set `DEBUG=False` in production.
